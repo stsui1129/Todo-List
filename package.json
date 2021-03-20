@@ -1,0 +1,23 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stsui1129/Todo-List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stsui1129/Todo-List/issues"
+  },
+  "homepage": "https://github.com/stsui1129/Todo-List#readme",
+  "dependencies": {
+    "webpack": "^5.27.1",
+    "webpack-cli": "^4.5.0"
+  }
+}
