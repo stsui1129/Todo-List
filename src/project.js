@@ -3,7 +3,7 @@ let myProjects = [];
 class Project {
     constructor(title) {
         this.title = title;
-        this.toDo = [];
+        this.toDoList = [];
     }
 
     set title(newTitle) {
@@ -11,8 +11,8 @@ class Project {
     }
 
     addToDo(title, description, dueDate, priority) {
-        const toDo = new toDO(title, description, dueDate, priority)
-        this.toDo.push(toDo);
+        const toDo = new ToDo(title, description, dueDate, priority);
+        this.toDoList.push(toDo);
     }
 }
 
