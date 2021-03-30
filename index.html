@@ -7,41 +7,48 @@
 </head>
 <body>
     <h1>To-Do List</h1>
-    <div class="project"></div>
+    <aside>
+    <div class="project-content"></div>
 
 
 
 
-    <div class="todo">
-        <div class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <form id="form">
-                    <label for="title">Title: </label>
-                    <input type="text" name="title" id="title" required>
-                    <label for="description">Description: </label>
-                    <input type="text" name="description" id="description" required>
-                    <label for="dueDate">PdueDate </label>
-                    <input type="date" name="dueDate" id="dueDate" required>
-                    <label for="priority">High </label>
-                    <input type="radio" name="priority" id="high-priority">
-                    <label for="priority">Medium </label>
-                    <input type="radio" name="priority" id="medium-priority">
-                    <label for="priority">Low </label>
-                    <input type="radio" name="priority" id="low-priority">
 
-                    <div class="form-buttons">
-                        <button type="button" id="cancel-button">Cancel</button>
-                        <button type="submit" id="submit-button">Submit</button>
+    </aside>
+    
+    <div class="modal">
+         <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <form id="form">
+                <label for="title">Title: </label>
+                <input type="text" name="title" id="title" required>
+                <label for="description">Description: </label>
+                <input type="text" name="description" id="description" required>
+                <label for="dueDate">dueDate </label>
+                <input type="date" name="dueDate" id="dueDate" required>
+                <p>Priority</p>
+                <label for="priority">High</label>
+                <input type="radio" name="priority" id="high-priority">
+                <label for="priority">Medium</label>
+                <input type="radio" name="priority" id="medium-priority">
+                <label for="priority">Low</label>
+                <input type="radio" name="priority" id="low-priority">
+
+                 <div class="form-buttons">
+                    <button type="button" id="cancel-button">Cancel</button>
+                    <button type="submit" id="submit-button">Submit</button>
                     </div>
-                </form>
+            </form>
 
 
-
-            </div>
 
         </div>
     </div>
+    <div class="todo-content">
+
+
+    </div>
+    
     
 
 
