@@ -24,3 +24,5 @@ class ToDo {
         this.priority = priority;
     }
 }
+
+export {myProjects, Project, ToDo}
