@@ -7,3 +7,7 @@ closeButton.addEventListener("click", toggleModal);
 
 const cancelButton = document.querySelector("#cancel-button");
 cancelButton.addEventListener("click", toggleModal);
+
+function toggleModal() {
+    modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
+}
