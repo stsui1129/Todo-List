@@ -1,16 +1,30 @@
-aside {
+h1 {
+    display: flex;
+    justify-content: center;
+}
 
+.add-todo-button {
+    display: flex;
+    justify-content: center;
+}
+
+aside {
+    width: 30%;
+    float: left;
+    display: inline;
 }
 
 
 .project-content {
 
 
-    
+
 }
 
 .todo-content {
-
+    width: 70%;
+    float: right;
+    display: inline;
 
 }
 
