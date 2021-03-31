@@ -16,6 +16,10 @@ class Project {
         const toDo = new ToDo(title, description, dueDate, priority);
         this.toDoList.push(toDo);
     }
+
+    addToProjects() {
+        myProjects.push(this);
+    }
 }
 
 export {myProjects, Project};

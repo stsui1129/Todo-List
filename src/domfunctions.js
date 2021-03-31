@@ -27,16 +27,17 @@ function renderToDo(toDo) {
 
 }
 
-function addToDoToProject() {
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const dueDate = document.getElementById("due-date").value;
-    const priority = document.querySelector("input[name=priority]:checked").value;
+// function addToDoToProject() {
+//     // const title = document.getElementById("title").value;
+//     // const description = document.getElementById("description").value;
+//     // const dueDate = document.getElementById("due-date").value;
+//     // const priority = document.querySelector("input[name=priority]:checked").value;
     
-
-
+//     Project.addToDo(title, description, dueDate, priority);
+//     renderToDo(toDo);
     
-}
+// }
+
 
 
 
