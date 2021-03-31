@@ -7,10 +7,10 @@ class Project {
         this.title = title;
         this.toDoList = [];
     }
-
-    // set title(newTitle) {
-    //     this.title = newTitle;
-    // }
+    // this.title = newTitle leads to infinite recursion
+    set title(newTitle) {
+        this._title = newTitle;
+    }
 
     addToDo(title, description, dueDate, priority) {
         const toDo = new ToDo(title, description, dueDate, priority);
@@ -18,4 +18,4 @@ class Project {
     }
 }
 
-export {myProjects, Project}
+export {myProjects, Project};
