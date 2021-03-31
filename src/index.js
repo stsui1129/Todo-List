@@ -40,6 +40,8 @@ project1.addToProjects();
 
 const project2 = new Project ("p2title", []);
 project2.addToDo("study", "javascript", "soon", "high");
+project2.addToProjects();
+
 
 console.log(project1._title);
 console.log(project1.toDoList);
@@ -49,7 +51,7 @@ console.log(project2.toDoList);
 console.log(myProjects);
 
 
-renderToDo();
+renderToDo(toDo);
 addToDoToProject();
 
 function renderTasks() { // renders all the books in myLibrary array
