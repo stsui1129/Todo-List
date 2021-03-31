@@ -1,4 +1,5 @@
-import {myProjects, Project, ToDo} from './project';
+import {myProjects, Project} from './project';
+import ToDo from './todo';
 
 
 
@@ -23,16 +24,16 @@ function addToDoToProject() {
     const priority = document.getElementById("priority").value;
 
 
+    
 }
 
+const project1 = new Project ("p1title", []);
+project1.addToDo("gym", "bench", "now", "high");
+project1.addToDo("sleep", "ok", "later", "low");
+
+console.log(project1.title);
+console.log(project1.toDoList);
 
 
-function renderToDo() {
-    const toDoContent = document.querySelector(".todo-content");
-    const toDoDiv = document.createElement("div");
-    const titleDiv = document.createElement("div");
-    const descriptionDiv = document.createElement("div");
-    const dueDateDiv = document.createElement("div");
-    const priorityDiv = document.createElement("div");
 
-}
+

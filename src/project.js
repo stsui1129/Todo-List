@@ -1,14 +1,16 @@
+import ToDo from './todo';
+
 let myProjects = [];
 
 class Project {
-    constructor(title) {
+    constructor(title, []) {
         this.title = title;
         this.toDoList = [];
     }
 
-    set title(newTitle) {
-        this.title = newTitle;
-    }
+    // set title(newTitle) {
+    //     this.title = newTitle;
+    // }
 
     addToDo(title, description, dueDate, priority) {
         const toDo = new ToDo(title, description, dueDate, priority);
@@ -16,13 +18,4 @@ class Project {
     }
 }
 
-class ToDo {
-    constructor(title, description, dueDate, priority) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
-}
-
-export {myProjects, Project, ToDo}
+export {myProjects, Project}
