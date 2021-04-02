@@ -1,6 +1,6 @@
 import {myProjects, Project} from './project';
 import ToDo from './todo';
-import {renderToDo, addToDoToProject} from './domfunctions';
+import domFunctions from './domfunctions';
 
 
 
@@ -25,7 +25,7 @@ function formReset() {
 
 const submitButton = document.querySelector("#submit-button");
 submitButton.addEventListener("click", (event) => {
-    addToDoToProject();
+    domFunctions.addToDoToProject();
     toggleModal();
     event.preventDefault(); //prevents the form from reloading the script
     formReset();
@@ -51,10 +51,10 @@ console.log(project2.toDoList);
 console.log(myProjects);
 
 
-renderToDo(toDo);
-addToDoToProject();
+// renderToDo(toDo);
+domFunctions.addToDoToProject();
 
-function renderTasks() { // renders all the books in myLibrary array
+function renderTasks() { // renders all tasks in current project
     for (let i=0; i<project1.todoList.length; i++){
         rendertoDo(project1.todoList[i]);
     }
