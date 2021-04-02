@@ -1,7 +1,37 @@
 import {myProjects, Project} from './project';
 import ToDo from './todo';
 
-const domFunctions = (() {
+const domFunctions = (() => {
+    const modalController = () => {
+        const modal = document.querySelector('.modal');
+        const trigger = document.querySelector('.trigger');
+        trigger.addEventListener("click", toggleModal);
+
+        const closeButton = document.querySelector(".close-button");
+        closeButton.addEventListener("click", toggleModal);
+
+        const cancelButton = document.querySelector("#cancel-button");
+        cancelButton.addEventListener("click", toggleModal);
+
+        function toggleModal() {
+            modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
+        }
+
+        function formReset() {
+            const form = document.getElementById('form');
+            form.reset(); //clears the values in the form since we're preventing that with preventDefault()
+        }
+
+        const submitButton = document.querySelector("#submit-button");
+        submitButton.addEventListener("click", (event) => {
+            domFunctions.addToDoToProject();
+            toggleModal();
+            event.preventDefault(); //prevents the form from reloading the script
+            formReset();
+        });
+    }
+
+
     const renderToDo = (toDo) => {
         const toDoContent = document.querySelector(".todo-content");
         const toDoDiv = document.createElement("div");
@@ -38,7 +68,7 @@ const domFunctions = (() {
         
     }
 
-    return {renderToDo, addToDoToProject};
+    return {modalController, renderToDo, addToDoToProject};
 
 })();
 
