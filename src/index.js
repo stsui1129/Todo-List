@@ -27,8 +27,8 @@ console.log(myProjects);
 domFunctions.addToDoToProject();
 
 function renderTasks() { // renders all tasks in current project
-    for (let i=0; i<project1.todoList.length; i++){
-        domFunctions.rendertoDo(project1.todoList[i]);
+    for (let i=0; i<project1.toDoList.length; i++){
+        domFunctions.renderToDo(project1.toDoList[i]);
     }
 }
 renderTasks();

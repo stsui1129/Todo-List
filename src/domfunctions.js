@@ -13,11 +13,11 @@ const domFunctions = (() => {
         const cancelButton = document.querySelector("#cancel-button");
         cancelButton.addEventListener("click", toggleModal);
 
-        function toggleModal() {
+        const toggleModal = () => {
             modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
         }
 
-        function formReset() {
+        const formReset = () => {
             const form = document.getElementById('form');
             form.reset(); //clears the values in the form since we're preventing that with preventDefault()
         }
@@ -46,7 +46,7 @@ const domFunctions = (() => {
         toDoDiv.appendChild(priorityDiv);
 
         toDoDiv.classList.add("todo-div");
-        toDoDiv.setAttribute("id", this.toDoList.indexOf(toDo));
+        // toDoDiv.setAttribute("id", this.toDoList.indexOf(toDo));
         titleDiv.classList.add("title-div");
         descriptionDiv.classList.add("description-div");
         dueDateDiv.classList.add("due-date-div");
@@ -58,13 +58,13 @@ const domFunctions = (() => {
     }
 
     const addToDoToProject = () => {
-        const title = document.getElementById("title").value;
-        const description = document.getElementById("description").value;
-        const dueDate = document.getElementById("due-date").value;
-        const priority = document.querySelector("input[name=priority]:checked").value;
+        // const title = document.getElementById("title").value;
+        // const description = document.getElementById("description").value;
+        // const dueDate = document.getElementById("due-date").value;
+        // const priority = document.querySelector("input[name=priority]:checked").value;
         
-        Project.addToDo(title, description, dueDate, priority);
-        renderToDo(toDo);
+        // Project.addToDo(title, description, dueDate, priority);
+        // renderToDo(toDo);
         
     }
 
