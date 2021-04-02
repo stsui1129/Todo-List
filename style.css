@@ -28,6 +28,39 @@ aside {
 
 }
 
+.todo-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 100px;
+    width: 100vh;
+    padding: 10px;
+    margin: 20px;
+    background: linear-gradient(#cda9dd, #9198e5);
+  }
+  
+  .title-div {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .description-div {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .due-date-div {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .priority-div {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
 input {
     display: flex;
     margin: 10px;
