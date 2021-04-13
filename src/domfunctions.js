@@ -2,37 +2,41 @@ import {myProjects, Project} from './project';
 import ToDo from './todo';
 
 const domFunctions = (() => {
-    const modalController = () => {
+    const toggleModal = () => {
         const modal = document.querySelector('.modal');
-        const trigger = document.querySelector('.trigger');
-        trigger.addEventListener("click", toggleModal);
+        modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
+    }
 
-        const closeButton = document.querySelector(".close-button");
-        closeButton.addEventListener("click", toggleModal);
+    // const modalButtons = () => {
+    //     const trigger = document.querySelector('.trigger');
+    //     trigger.addEventListener("click", toggleModal);
 
-        const cancelButton = document.querySelector("#cancel-button");
-        cancelButton.addEventListener("click", toggleModal);
+        
+    //     const closeButton = document.querySelector(".close-button");
+    //     closeButton.addEventListener("click", toggleModal);
 
-        const toggleModal = () => {
-            modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
-        }
+    //     const cancelButton = document.querySelector("#cancel-button");
+    //     cancelButton.addEventListener("click", toggleModal);
+    // }
 
-        const formReset = () => {
-            const form = document.getElementById('form');
-            form.reset(); //clears the values in the form since we're preventing that with preventDefault()
-        }
+    
 
+    const formReset = () => {
+        const form = document.getElementById('form');
+        form.reset(); //clears the values in the form since we're preventing that with preventDefault()
+    }
+
+    const submitForm = () => {
         const submitButton = document.querySelector("#submit-button");
         submitButton.addEventListener("click", (event) => {
-            domFunctions.addToDoToProject();
+            addToDoToProject();
             toggleModal();
             event.preventDefault(); //prevents the form from reloading the script
             formReset();
         });
     }
-
-
-    const renderToDo = (toDo) => {
+        
+    const renderToDo = (/*toDo*/) => {
         const toDoContent = document.querySelector(".todo-content");
         const toDoDiv = document.createElement("div");
         const titleDiv = document.createElement("div");
@@ -46,29 +50,33 @@ const domFunctions = (() => {
         toDoDiv.appendChild(priorityDiv);
 
         toDoDiv.classList.add("todo-div");
-        // toDoDiv.setAttribute("id", this.toDoList.indexOf(toDo));
+        // toDoDiv.setAttribute("id", this.toDoList.indexOf(todo));
         titleDiv.classList.add("title-div");
         descriptionDiv.classList.add("description-div");
         dueDateDiv.classList.add("due-date-div");
         priorityDiv.classList.add("priority-div");
-
-
-
-
     }
 
     const addToDoToProject = () => {
-        // const title = document.getElementById("title").value;
-        // const description = document.getElementById("description").value;
-        // const dueDate = document.getElementById("due-date").value;
-        // const priority = document.querySelector("input[name=priority]:checked").value;
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const dueDate = document.getElementById("due-date").value;
+        const priority = document.querySelector('input[name="priority"]:checked').value;
         
-        // Project.addToDo(title, description, dueDate, priority);
-        // renderToDo(toDo);
+        const project = new Project (title, description, dueDate, priority);
+        project.addToDo(title, description, dueDate, priority);
+        renderToDo(this);
         
     }
 
-    return {modalController, renderToDo, addToDoToProject};
+    // function renderAllTasks() { // renders all tasks in current project
+    //     const project = new Project (title, description, dueDate, priority);
+    //     for (let i=0; i<project.toDoList.length; i++){
+    //         domFunctions.renderToDo(project.toDoList[i]);
+    //     }
+    // }
+
+    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject};
 
 })();
 
