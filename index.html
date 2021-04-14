@@ -8,16 +8,21 @@
 <body>
     <h1>To-Do List</h1>
     <aside>
-    <div class="project-content"></div>
+        <form id="project-form">
+            <label for="title">Project Title</label>
+            <input type="text" name="project-title" id="project-title" required>
+        </form>
+        <button type="submit" id="add-button">Add</button>
+        <div class="project-content">
         Project content placeholder
 
 
 
-
+        </div>
     </aside>
     
-    <div class="modal">
-         <div class="modal-content">
+    <div class="todo-modal">
+         <div class="todo-modal-content">
             <span class="close-button">&times;</span>
             <form id="form">
                 <label for="title">Title: </label>
@@ -34,8 +39,7 @@
                 <label for="priority">Low</label>
                 <input type="radio" name="priority" id="low-priority">
 
-                 <div class="form-buttons">
-                    <button type="button" id="cancel-button">Cancel</button>
+                <div class="form-buttons">
                     <button type="submit" id="submit-button">Submit</button>
                     </div>
             </form>
@@ -47,9 +51,9 @@
     
     
     <div class="todo-content">
-        <div class="add-todo-button">
+        <span class="add-todo-button">
             <button class="trigger">Add ToDo</button>
-        </div>
+        </span>
         Todo content placeholder
 
 

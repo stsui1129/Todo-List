@@ -3,10 +3,10 @@ h1 {
     justify-content: center;
 }
 
-.add-todo-button {
+/* .add-todo-button {
     display: flex;
-    justify-content: center;
-}
+    justify-content: right;
+} */
 
 aside {
     width: 30%;
@@ -20,6 +20,19 @@ aside {
 
 
 } */
+
+.project-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 10px;
+  width: 30vh;
+  padding: 10px;
+  margin: 20px;
+  background: linear-gradient(#cda9dd, #9198e5);
+}
 
 .todo-content {
     width: 70%;
@@ -113,7 +126,7 @@ input#title {
     background-color: darkgray;
 }
 
-.modal {
+.todo-modal {
     position: fixed;
     z-index: 1; /* sit on top */
     left: 0;
@@ -128,7 +141,7 @@ input#title {
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.modal-content {
+.todo-modal-content {
     position: absolute;
     top: 50%; /* centre of screen */
     left: 50%; /* centre of screen */
