@@ -3,22 +3,26 @@ import ToDo from './todo';
 
 const domFunctions = (() => {
     const toggleModal = () => {
-        const modal = document.querySelector('.modal');
+        const modal = document.querySelector('.todo-modal');
         modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
     }
 
-    // const modalButtons = () => {
-    //     const trigger = document.querySelector('.trigger');
-    //     trigger.addEventListener("click", toggleModal);
+   
+    const trigger = document.querySelector('.trigger');
+    trigger.addEventListener("click", toggleModal);
 
         
-    //     const closeButton = document.querySelector(".close-button");
-    //     closeButton.addEventListener("click", toggleModal);
-
-    //     const cancelButton = document.querySelector("#cancel-button");
-    //     cancelButton.addEventListener("click", toggleModal);
-    // }
-
+    const closeButton = document.querySelector(".close-button");
+    closeButton.addEventListener("click", toggleModal);
+ 
+   
+        const addProjectButton = document.querySelector("#add-button");
+        addProjectButton.addEventListener("click", (event)=> {
+            renderProject();
+            event.preventDefault();
+            document.getElementById('project-form').reset();
+        });
+    
     
 
     const formReset = () => {
@@ -63,12 +67,30 @@ const domFunctions = (() => {
         const dueDate = document.getElementById("due-date").value;
         const priority = document.querySelector('input[name="priority"]:checked').value;
         
-        const project = new Project (title, description, dueDate, priority);
+        const project = new Project (title, []);
         project.addToDo(title, description, dueDate, priority);
         renderToDo(this);
         
     }
 
+    const renderProject = () => {
+        const projectContent = document.querySelector(".project-content");
+        const projectTitle = document.getElementById("project-title").value;
+        // myProjects.push(???)
+        if (!myProjects.includes(projectTitle) && projectTitle !== "") {
+            const projectDiv = document.createElement("div");
+            projectDiv.classList.add("project-div");
+            projectContent.appendChild(projectDiv); 
+            projectDiv.textContent = projectTitle;
+        }
+    }
+
+    const renderAllProjects = () => {
+        for (let i=0; i< myProjects.length; i++) {
+            renderProject(myProjects[i]);
+        }
+
+    }
     // function renderAllTasks() { // renders all tasks in current project
     //     const project = new Project (title, description, dueDate, priority);
     //     for (let i=0; i<project.toDoList.length; i++){
@@ -76,7 +98,7 @@ const domFunctions = (() => {
     //     }
     // }
 
-    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject};
+    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject, renderAllProjects};
 
 })();
 

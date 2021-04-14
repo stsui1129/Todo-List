@@ -5,23 +5,24 @@ import domFunctions from './domfunctions';
 
 
 
-const project1 = new Project ("p1title", []);
-project1.addToDo("gym", "bench", "now", "high");
-project1.addToDo("sleep", "ok", "later", "low");
-project1.addToProjects();
+const defaultProject = new Project ("default project", []);
+defaultProject.addToDo("gym", "bench", "now", "high");
+defaultProject.addToDo("sleep", "ok", "later", "low");
+defaultProject.addToProjects();
 
-const project2 = new Project ("p2title", []);
-project2.addToDo("study", "javascript", "soon", "high");
-project2.addToProjects();
+// const project2 = new Project ("p2title", []);
+// project2.addToDo("study", "javascript", "soon", "high");
+// project2.addToProjects();
 
 
-console.log(project1._title);
-console.log(project1.toDoList);
-console.log(project2._title);
-console.log(project2.toDoList);
+console.log(defaultProject._title);
+console.log(defaultProject.toDoList);
+// console.log(project2._title);
+// console.log(project2.toDoList);
 
 console.log(myProjects);
 
 
-domFunctions.renderToDo(this);
-// domFunctions.renderAllTasks();
+// domFunctions.renderToDo(this);
+// // domFunctions.renderAllTasks();
+domFunctions.renderAllProjects();
