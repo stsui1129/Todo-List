@@ -7,7 +7,8 @@ const domFunctions = (() => {
         modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
     }
 
-   
+    
+
     const trigger = document.querySelector('.trigger');
     trigger.addEventListener("click", toggleModal);
 
@@ -18,6 +19,7 @@ const domFunctions = (() => {
    
         const addProjectButton = document.querySelector("#add-button");
         addProjectButton.addEventListener("click", (event)=> {
+            addNewProject();
             renderProject();
             event.preventDefault();
             document.getElementById('project-form').reset();
@@ -69,17 +71,25 @@ const domFunctions = (() => {
         
         const project = new Project (title, []);
         project.addToDo(title, description, dueDate, priority);
-        renderToDo(this);
+        renderToDo(toDo);
         
+    }
+
+    const addNewProject = () => {
+        const projectTitle = document.getElementById("project-title").value;
+        if (!myProjects.includes(projectTitle) && projectTitle !== "") {
+        const project = new Project (projectTitle, []);
+        project.addToProjects();
+        }
     }
 
     const renderProject = () => {
         const projectContent = document.querySelector(".project-content");
         const projectTitle = document.getElementById("project-title").value;
-        // myProjects.push(???)
         if (!myProjects.includes(projectTitle) && projectTitle !== "") {
             const projectDiv = document.createElement("div");
             projectDiv.classList.add("project-div");
+            // projectDiv.setAttribute("id", myProjects.findIndex(x => x.title === projectTitle.value));
             projectContent.appendChild(projectDiv); 
             projectDiv.textContent = projectTitle;
         }
@@ -89,8 +99,8 @@ const domFunctions = (() => {
         for (let i=0; i< myProjects.length; i++) {
             renderProject(myProjects[i]);
         }
-
     }
+
     // function renderAllTasks() { // renders all tasks in current project
     //     const project = new Project (title, description, dueDate, priority);
     //     for (let i=0; i<project.toDoList.length; i++){
@@ -98,7 +108,7 @@ const domFunctions = (() => {
     //     }
     // }
 
-    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject, renderAllProjects};
+    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject, addNewProject, renderProject, renderAllProjects};
 
 })();
 

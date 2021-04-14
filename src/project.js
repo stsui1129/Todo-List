@@ -17,7 +17,7 @@ class Project {
         this.toDoList.push(toDo);
     }
 
-    addToProjects() {
+    addToProjects() {  
         myProjects.push(this);
     }
 }
