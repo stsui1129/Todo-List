@@ -20,7 +20,9 @@ const domFunctions = (() => {
         const addProjectButton = document.querySelector("#add-button");
         addProjectButton.addEventListener("click", (event)=> {
             addNewProject();
-            renderProject();
+            
+            
+            
             event.preventDefault();
             document.getElementById('project-form').reset();
         });
@@ -77,23 +79,27 @@ const domFunctions = (() => {
 
     const addNewProject = () => {
         const projectTitle = document.getElementById("project-title").value;
-        if (!myProjects.includes(projectTitle) && projectTitle !== "") {
+        if (myProjects.some(x => x._title === projectTitle) === false && projectTitle !== "") {
         const project = new Project (projectTitle, []);
         project.addToProjects();
+        renderProject(project);
         }
     }
 
-    const renderProject = () => {
+    const renderProject = (project) => {
         const projectContent = document.querySelector(".project-content");
-        const projectTitle = document.getElementById("project-title").value;
-        if (!myProjects.includes(projectTitle) && projectTitle !== "") {
-            const projectDiv = document.createElement("div");
-            projectDiv.classList.add("project-div");
-            // projectDiv.setAttribute("id", myProjects.findIndex(x => x.title === projectTitle.value));
-            projectContent.appendChild(projectDiv); 
-            projectDiv.textContent = projectTitle;
-        }
-    }
+        const projectDiv = document.createElement("div");
+        const removeBtn = document.createElement("button");
+
+        projectDiv.classList.add("project-div");
+        projectDiv.textContent = project._title;
+        removeBtn.classList.add("remove-project");
+        removeBtn.textContent = "delete";
+        projectDiv.setAttribute("id", myProjects.findIndex(x => x._title === project._title));
+        projectContent.appendChild(projectDiv);
+        projectDiv.appendChild(removeBtn);
+    } 
+    
 
     const renderAllProjects = () => {
         for (let i=0; i< myProjects.length; i++) {

@@ -7,9 +7,9 @@ class Project {
         this.title = title;
         this.toDoList = [];
     }
-    // this.title = newTitle leads to infinite recursion
+    
     set title(newTitle) {
-        this._title = newTitle;
+        this._title = newTitle; // this.title = newTitle leads to infinite recursion
     }
 
     addToDo(title, description, dueDate, priority) {
