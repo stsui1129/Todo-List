@@ -17,21 +17,28 @@ const domFunctions = (() => {
     closeButton.addEventListener("click", toggleModal);
  
    
-        const addProjectButton = document.querySelector("#add-button");
-        addProjectButton.addEventListener("click", (event)=> {
-            addNewProject();
-            
-            
-            
-            event.preventDefault();
-            document.getElementById('project-form').reset();
-        });
+    const addProjectButton = document.querySelector("#add-button");
+    addProjectButton.addEventListener("click", (event)=> {
+        addNewProject(); 
+        event.preventDefault();
+        document.getElementById('project-form').reset();
+    });
+
+    // const projectBtns = document.querySelectorAll(".project-div");
+    // projectBtns.forEach((project) => {
+    //     project.addEventListener('click', (e) => {
+    //     e.target.textContent = "you";
+    //     });
+    // }); why is this not working?
+
+    
+
     
     
 
     const formReset = () => {
         const form = document.getElementById('form');
-        form.reset(); //clears the values in the form since we're preventing that with preventDefault()
+        form.reset();
     }
 
     const submitForm = () => {
@@ -39,7 +46,7 @@ const domFunctions = (() => {
         submitButton.addEventListener("click", (event) => {
             addToDoToProject();
             toggleModal();
-            event.preventDefault(); //prevents the form from reloading the script
+            event.preventDefault();
             formReset();
         });
     }
@@ -79,7 +86,7 @@ const domFunctions = (() => {
 
     const addNewProject = () => {
         const projectTitle = document.getElementById("project-title").value;
-        if (myProjects.some(x => x._title === projectTitle) === false && projectTitle !== "") {
+        if (myProjects.some(x => x._title === projectTitle) === false && projectTitle !== "") { //if project title does not exist & not empty
         const project = new Project (projectTitle, []);
         project.addToProjects();
         renderProject(project);
@@ -107,6 +114,7 @@ const domFunctions = (() => {
         }
     }
 
+    
     // function renderAllTasks() { // renders all tasks in current project
     //     const project = new Project (title, description, dueDate, priority);
     //     for (let i=0; i<project.toDoList.length; i++){

@@ -22,7 +22,6 @@ console.log(defaultProject.toDoList);
 
 console.log(myProjects);
 
-
 // domFunctions.renderToDo(this);
 // // domFunctions.renderAllTasks();
 domFunctions.renderAllProjects();
