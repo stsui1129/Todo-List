@@ -27,8 +27,8 @@ const domFunctions = (() => {
     const projectBtns = document.querySelector(".project-content");
     projectBtns.addEventListener('click', (e) => {
         e.target.classList.toggle("selected");
-        myProjects[e.target.dataset.key].selected = true;
-
+        myProjects[myProjects.findIndex(project => e.target.dataset.key == project.id)].selected = true;
+        //find the index position where project.id = e.targetdatakey
 
         });
    
@@ -82,15 +82,18 @@ const domFunctions = (() => {
         const priority = document.querySelector('input[name="priority"]:checked').value;
         
         const selectedProject = document.querySelector(".selected");
-        myProjects[selectedProject.getAttribute("data-key")].addToDo(title, description, dueDate, priority);
+        const selectedProIndex = myProjects.findIndex(project => selectedProject.dataset.key == project.id);
+        myProjects[selectedProIndex].addToDo(title, description, dueDate, priority);
         // renderToDo(toDo);
         
     }
 
     const addNewProject = () => {
         const projectTitle = document.getElementById("project-title").value;
+        
         if (myProjects.some(x => x._title === projectTitle) === false && projectTitle !== "") { //if project title does not exist & not empty
-        const project = new Project (projectTitle, [], false);
+        const project = new Project (Date.now(), projectTitle, [], false);
+        
         project.addToProjects();
         renderProject(project);
         }
@@ -109,7 +112,7 @@ const domFunctions = (() => {
         projectDiv.textContent = project._title;
         removeBtn.classList.add("remove-project");
         removeBtn.textContent = "delete";
-        projectDiv.setAttribute("data-key", myProjects.findIndex(x => x._title === project._title));
+        projectDiv.setAttribute("data-key", project.id);
         projectContent.appendChild(projectDiv);
         projectDiv.appendChild(removeBtn);
     } 

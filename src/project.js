@@ -3,7 +3,8 @@ import ToDo from './todo';
 let myProjects = [];
 
 class Project {
-    constructor(title, [], selected) {
+    constructor(id, title, [], selected) {
+        this.id = id;
         this.title = title;
         this.toDoList = [];
         this.selected = selected;
