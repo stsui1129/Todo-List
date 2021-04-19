@@ -5,9 +5,9 @@ import domFunctions from './domfunctions';
 
 
 
-const defaultProject = new Project ("default project", []);
-defaultProject.addToDo("gym", "bench", "now", "high");
-defaultProject.addToDo("sleep", "ok", "later", "low");
+const defaultProject = new Project ("default project", [], true);
+defaultProject.addToDo("gym", "bench", "now", "High");
+defaultProject.addToDo("sleep", "ok", "later", "Low");
 defaultProject.addToProjects();
 
 // const project2 = new Project ("p2title", []);

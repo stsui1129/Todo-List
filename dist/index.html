@@ -14,7 +14,7 @@
         </form>
         <button type="submit" id="add-button">Add</button>
         <div class="project-content">
-        Project content placeholder
+        
 
 
 
@@ -33,11 +33,11 @@
                 <input type="date" name="dueDate" id="due-date" required>
                 <p>Priority</p>
                 <label for="priority">High</label>
-                <input type="radio" name="priority" id="high-priority" checked> <!-- had to put default otherwise cannot read value of null -->
+                <input type="radio" name="priority" id="high-priority" value="High" checked> <!-- had to put default otherwise cannot read value of null -->
                 <label for="priority">Medium</label>
-                <input type="radio" name="priority" id="medium-priority">
+                <input type="radio" name="priority" id="medium-priority" value="Medium">
                 <label for="priority">Low</label>
-                <input type="radio" name="priority" id="low-priority">
+                <input type="radio" name="priority" id="low-priority" value="Low">
 
                 <div class="form-buttons">
                     <button type="submit" id="submit-button">Submit</button>

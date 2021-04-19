@@ -24,16 +24,27 @@ aside {
 .project-div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
+  justify-content: center;
+  text-align: center;
   border: 1px solid black;
   border-radius: 10px;
-  height: 10px;
-  width: 30vh;
-  padding: 10px;
-  margin: 20px;
+  
+  height: 40px;
+  width: 100%;
   background: linear-gradient(#cda9dd, #9198e5);
 }
 
+.selected {
+  background: linear-gradient(#742d92, #9198e5);
+}
+
+.remove-project {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+}
 
 .todo-content {
     width: 70%;

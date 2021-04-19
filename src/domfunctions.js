@@ -4,7 +4,7 @@ import ToDo from './todo';
 const domFunctions = (() => {
     const toggleModal = () => {
         const modal = document.querySelector('.todo-modal');
-        modal.classList.toggle("show-modal"); //toggles between .modal class and .show-modal class
+        modal.classList.toggle("show-modal"); //toggles between .todo-modal class and .show-modal class
     }
 
     
@@ -24,13 +24,15 @@ const domFunctions = (() => {
         document.getElementById('project-form').reset();
     });
 
-    // const projectBtns = document.querySelectorAll(".project-div");
-    // projectBtns.forEach((project) => {
-    //     project.addEventListener('click', (e) => {
-    //     e.target.textContent = "you";
-    //     });
-    // }); why is this not working?
+    const projectBtns = document.querySelector(".project-content");
+    projectBtns.addEventListener('click', (e) => {
+        e.target.classList.toggle("selected");
+        myProjects[e.target.dataset.key].selected = true;
 
+
+        });
+   
+    
     
 
     
@@ -41,15 +43,16 @@ const domFunctions = (() => {
         form.reset();
     }
 
-    const submitForm = () => {
+    
         const submitButton = document.querySelector("#submit-button");
-        submitButton.addEventListener("click", (event) => {
+        submitButton.addEventListener("click", e => {
+            console.log("HI");
             addToDoToProject();
             toggleModal();
-            event.preventDefault();
+            e.preventDefault();
             formReset();
         });
-    }
+  
         
     const renderToDo = (/*toDo*/) => {
         const toDoContent = document.querySelector(".todo-content");
@@ -78,16 +81,16 @@ const domFunctions = (() => {
         const dueDate = document.getElementById("due-date").value;
         const priority = document.querySelector('input[name="priority"]:checked').value;
         
-        const project = new Project (title, []);
-        project.addToDo(title, description, dueDate, priority);
-        renderToDo(toDo);
+        const selectedProject = document.querySelector(".selected");
+        myProjects[selectedProject.getAttribute("data-key")].addToDo(title, description, dueDate, priority);
+        // renderToDo(toDo);
         
     }
 
     const addNewProject = () => {
         const projectTitle = document.getElementById("project-title").value;
         if (myProjects.some(x => x._title === projectTitle) === false && projectTitle !== "") { //if project title does not exist & not empty
-        const project = new Project (projectTitle, []);
+        const project = new Project (projectTitle, [], false);
         project.addToProjects();
         renderProject(project);
         }
@@ -97,12 +100,16 @@ const domFunctions = (() => {
         const projectContent = document.querySelector(".project-content");
         const projectDiv = document.createElement("div");
         const removeBtn = document.createElement("button");
+        removeBtn.addEventListener("click", () => {
+            projectDiv.remove();
+            myProjects.splice(myProjects.indexOf(project), 1);
+        })
 
         projectDiv.classList.add("project-div");
         projectDiv.textContent = project._title;
         removeBtn.classList.add("remove-project");
         removeBtn.textContent = "delete";
-        projectDiv.setAttribute("id", myProjects.findIndex(x => x._title === project._title));
+        projectDiv.setAttribute("data-key", myProjects.findIndex(x => x._title === project._title));
         projectContent.appendChild(projectDiv);
         projectDiv.appendChild(removeBtn);
     } 
@@ -111,6 +118,7 @@ const domFunctions = (() => {
     const renderAllProjects = () => {
         for (let i=0; i< myProjects.length; i++) {
             renderProject(myProjects[i]);
+
         }
     }
 
@@ -122,7 +130,7 @@ const domFunctions = (() => {
     //     }
     // }
 
-    return {toggleModal, formReset, submitForm, renderToDo, addToDoToProject, addNewProject, renderProject, renderAllProjects};
+    return {toggleModal, formReset, renderToDo, addToDoToProject, addNewProject, renderProject, renderAllProjects};
 
 })();
 
