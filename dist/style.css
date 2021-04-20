@@ -53,6 +53,10 @@ aside {
 
 }
 
+.todo-div .hidden {
+  display: none;
+}
+
 .todo-div {
     display: flex;
     flex-direction: column;

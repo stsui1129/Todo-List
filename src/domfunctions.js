@@ -1,5 +1,5 @@
 import {myProjects, Project} from './project';
-import ToDo from './todo';
+import Todo from './todo';
 
 const domFunctions = (() => {
     const toggleModal = () => {
@@ -26,14 +26,27 @@ const domFunctions = (() => {
 
     const projectBtns = document.querySelector(".project-content");
     projectBtns.addEventListener('click', (e) => {
+        toggleProject();
         e.target.classList.toggle("selected");
-        myProjects[myProjects.findIndex(project => e.target.dataset.key == project.id)].selected = true;
-        //find the index position where project.id = e.targetdatakey
-
-        });
+        myProjects.find(project => project.id == e.target.dataset.key).selected = true; //find the project where project.id = e.targetdatakey
+        
+        const allTodo = document.querySelectorAll(".hidden");
+        allTodo.forEach((todo) => {
+            if (todo.dataset.id == e.target.dataset.key) {
+                todo.classList.toggle("hidden");
+            }
+        })
+    });
    
     
-    
+    const toggleProject = () => {
+        const allProjectBtns = document.querySelectorAll("[data-key]");
+        allProjectBtns.forEach(project => {
+            if (project.classList.contains("selected")) {
+                project.classList.toggle("selected");
+            }
+        })
+    }
 
     
     
@@ -47,44 +60,48 @@ const domFunctions = (() => {
         const submitButton = document.querySelector("#submit-button");
         submitButton.addEventListener("click", e => {
             console.log("HI");
-            addToDoToProject();
+            addTodoToProject();
+            
             toggleModal();
             e.preventDefault();
             formReset();
         });
   
         
-    const renderToDo = (/*toDo*/) => {
-        const toDoContent = document.querySelector(".todo-content");
-        const toDoDiv = document.createElement("div");
+    const renderTodo = (todo) => {
+        const todoContent = document.querySelector(".todo-content");
+        const todoDiv = document.createElement("div");
         const titleDiv = document.createElement("div");
         const descriptionDiv = document.createElement("div");
         const dueDateDiv = document.createElement("div");
         const priorityDiv = document.createElement("div");
-        toDoContent.appendChild(toDoDiv);
-        toDoDiv.appendChild(titleDiv);
-        toDoDiv.appendChild(descriptionDiv);
-        toDoDiv.appendChild(dueDateDiv);
-        toDoDiv.appendChild(priorityDiv);
+        todoContent.appendChild(todoDiv);
+        todoDiv.appendChild(titleDiv);
+        todoDiv.appendChild(descriptionDiv);
+        todoDiv.appendChild(dueDateDiv);
+        todoDiv.appendChild(priorityDiv);
 
-        toDoDiv.classList.add("todo-div");
-        // toDoDiv.setAttribute("id", this.toDoList.indexOf(todo));
+        // titleDiv.textContent = todo.title;
+
+        todoDiv.classList.add("todo-div");
+        todoDiv.classList.add("hidden");
+        todoDiv.setAttribute("data-id", document.querySelector(".selected").dataset.key);
         titleDiv.classList.add("title-div");
         descriptionDiv.classList.add("description-div");
         dueDateDiv.classList.add("due-date-div");
         priorityDiv.classList.add("priority-div");
     }
 
-    const addToDoToProject = () => {
+    const addTodoToProject = (todo) => {
         const title = document.getElementById("title").value;
         const description = document.getElementById("description").value;
         const dueDate = document.getElementById("due-date").value;
         const priority = document.querySelector('input[name="priority"]:checked').value;
         
-        const selectedProject = document.querySelector(".selected");
-        const selectedProIndex = myProjects.findIndex(project => selectedProject.dataset.key == project.id);
-        myProjects[selectedProIndex].addToDo(title, description, dueDate, priority);
-        // renderToDo(toDo);
+        const selectedProjectBtn = document.querySelector(".selected");
+        const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
+        selectedProject.addTodo(title, description, dueDate, priority);
+        renderTodo(todo);
         
     }
 
@@ -125,15 +142,7 @@ const domFunctions = (() => {
         }
     }
 
-    
-    // function renderAllTasks() { // renders all tasks in current project
-    //     const project = new Project (title, description, dueDate, priority);
-    //     for (let i=0; i<project.toDoList.length; i++){
-    //         domFunctions.renderToDo(project.toDoList[i]);
-    //     }
-    // }
-
-    return {toggleModal, formReset, renderToDo, addToDoToProject, addNewProject, renderProject, renderAllProjects};
+    return {toggleModal, formReset, renderTodo, addTodoToProject, addNewProject, renderProject, renderAllProjects};
 
 })();
 
