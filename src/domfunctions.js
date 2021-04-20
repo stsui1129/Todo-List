@@ -28,16 +28,17 @@ const domFunctions = (() => {
     projectBtns.addEventListener('click', (e) => {
         toggleProject();
         e.target.classList.toggle("selected");
-        myProjects.find(project => project.id == e.target.dataset.key).selected = true; //find the project where project.id = e.targetdatakey
+        // myProjects.find(project => project.id == e.target.dataset.key) //find the project where project.id = e.targetdatakey
         
-        const allTodo = document.querySelectorAll(".hidden");
+        const allTodo = document.querySelectorAll(".todo-div");
         allTodo.forEach((todo) => {
-            if (todo.dataset.id == e.target.dataset.key) {
-                todo.classList.toggle("hidden");
-            }
+            todo.dataset.id == e.target.dataset.key? todo.classList.remove("hidden") : todo.classList.add("hidden");   
         })
     });
    
+    //when selected project clicked, go thru project.todolist and toggle classlist.
+
+
     
     const toggleProject = () => {
         const allProjectBtns = document.querySelectorAll("[data-key]");
@@ -84,7 +85,9 @@ const domFunctions = (() => {
         // titleDiv.textContent = todo.title;
 
         todoDiv.classList.add("todo-div");
-        todoDiv.classList.add("hidden");
+
+        
+        
         todoDiv.setAttribute("data-id", document.querySelector(".selected").dataset.key);
         titleDiv.classList.add("title-div");
         descriptionDiv.classList.add("description-div");

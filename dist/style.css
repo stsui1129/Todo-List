@@ -53,7 +53,7 @@ aside {
 
 }
 
-.todo-div .hidden {
+.todo-div.hidden {
   display: none;
 }
 
