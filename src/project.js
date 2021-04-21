@@ -14,8 +14,8 @@ class Project {
     }
 
     addTodo(title, description, dueDate, priority) {
-        const todo = new Todo(title, description, dueDate, priority);
-        this.todoList.push(todo);
+        const newTodo = new Todo(title, description, dueDate, priority);
+        this.todoList.push(newTodo);
     }
 
     addToProjects() {  
