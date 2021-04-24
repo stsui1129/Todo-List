@@ -1,3 +1,7 @@
+body {
+  background: grey;
+}
+
 h1 {
     display: flex;
     justify-content: center;
@@ -28,8 +32,6 @@ aside {
   justify-content: center;
   text-align: center;
   border: 1px solid black;
-  border-radius: 10px;
-  
   height: 40px;
   width: 100%;
   background: linear-gradient(#cda9dd, #9198e5);
@@ -62,7 +64,6 @@ aside {
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
-    border-radius: 10px;
     height: 80px;
     width: 100vh;
     background: linear-gradient(#cda9dd, #9198e5);
@@ -90,7 +91,35 @@ input {
     margin: 0px 65px;
 }
 
+#edit-submit-button {
+  float: right;
+  margin: 0px 65px;
+}
+
 input#title {
+    height: 30px;
+    width: 85%;
+    font-size: 20px;
+    border: solid 1px black;
+  }
+
+  input#edit-title {
+    height: 30px;
+    width: 85%;
+    font-size: 20px;
+    border: solid 1px black;
+  }
+
+  #edit-description {
+    display: flex;
+    margin: 10px;
+    height: 80px;
+    width: 85%;
+    font-size: 20px;
+    border: solid 1px black;
+  }
+
+  input#edit-due-date {
     height: 30px;
     width: 85%;
     font-size: 20px;
@@ -132,6 +161,20 @@ input#title {
     background-color: darkgray;
 }
 
+.close-button-edit {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button-edit:hover {
+  background-color: darkgray;
+}
+
 .todo-modal {
     position: fixed;
     z-index: 1; /* sit on top */
@@ -158,6 +201,34 @@ input#title {
     width: 30%;
     height: 40%;
     border-radius: 0.5rem;
+}
+
+.todo-modal-edit {
+  position: fixed;
+  z-index: 1; /* sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden; /* so it doesn't appear */
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.todo-modal-edit-content {
+  position: absolute;
+  top: 50%; /* centre of screen */
+  left: 50%; /* centre of screen */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #888;
+  padding: 1rem 1.5rem;
+  width: 30%;
+  height: 40%;
+  border-radius: 0.5rem;
 }
 
 .show-modal {

@@ -21,6 +21,10 @@ class Project {
     addToProjects() {  
         myProjects.push(this);
     }
+
+    deleteProject() {
+        myProjects.splice(myProjects.indexOf(this), 1);
+    }
 }
 
 export {myProjects, Project};

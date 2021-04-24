@@ -28,8 +28,6 @@ const domFunctions = (() => {
     projectBtns.addEventListener('click', (e) => {
         toggleProject();
         e.target.classList.toggle("selected");
-        // myProjects.find(project => project.id == e.target.dataset.key) //find the project where project.id = e.targetdatakey
-        
         const allTodo = document.querySelectorAll(".todo-div");
         allTodo.forEach((todo) => {
             todo.dataset.id == e.target.dataset.key? todo.classList.remove("hidden") : todo.classList.add("hidden");   
@@ -53,11 +51,11 @@ const domFunctions = (() => {
     
 
     const formReset = () => {
-        const form = document.getElementById('form');
-        form.reset();
+        const formCreate = document.getElementById('form-create');
+        formCreate.reset();
     }
 
-        form.addEventListener("submit", e => { //submit eventlistener must be attached to form
+    document.getElementById('form-create').addEventListener("submit", e => { //submit eventlistener must be attached to form
             
             addTodoToProject();
             renderTodo();   
@@ -67,8 +65,38 @@ const domFunctions = (() => {
             
         });
 
+    const toggleEditModal = () => {
+        const editModal = document.querySelector(".todo-modal-edit");
+        editModal.classList.toggle("show-modal");
+    }
+
+
+    const closeEditButton = document.querySelector(".close-button-edit");
+    closeEditButton.addEventListener("click", toggleEditModal);
+
+    document.getElementById('form-edit').addEventListener("submit", e => {
+        editTodo();
+        e.preventDefault();
+        document.getElementById('form-create').reset();
+    })
+
         
-    
+    const editTodo = () => {
+        
+        const title = document.getElementById("edit-title").value;
+        const description = document.getElementById("edit-description").value;
+        const dueDate = document.getElementById("edit-due-date").value;
+        const priority = document.querySelector('input[name="edit-priority"]:checked').value;
+        
+        const selectedProjectBtn = document.querySelector(".selected");
+        const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
+
+        // selectedProject.todoList[
+        
+        // .editTodo(title, description, dueDate, priority);
+        
+
+    }
   
        
 
@@ -89,7 +117,7 @@ const domFunctions = (() => {
         const selectedProjectBtn = document.querySelector(".selected");
         const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
         
-        const addedTodo = selectedProject.todoList[selectedProject.todoList.length-1]
+        const addedTodo = selectedProject.todoList[selectedProject.todoList.length-1];
         titleDiv.textContent = addedTodo.title; 
         
         dueDateDiv.textContent = addedTodo.dueDate;
@@ -105,7 +133,12 @@ const domFunctions = (() => {
             todoDiv.style.background = "lime";
         }
         
-        editButton.addEventListener("click", editTodo);
+        editButton.addEventListener("click", (e) => {
+            toggleEditModal();
+            document.getElementById("edit-title").value = addedTodo.title;
+            document.getElementById("edit-due-date").value = addedTodo.dueDate;
+
+        });
 
         
 
@@ -115,6 +148,7 @@ const domFunctions = (() => {
         descriptionDiv.classList.add("description-div");
         dueDateDiv.classList.add("due-date-div");
         editButton.classList.add("edit-button");
+        // editButton.setAttribute("data-id", addedTodo.id);
     }
 
     const addTodoToProject = () => {
@@ -145,7 +179,7 @@ const domFunctions = (() => {
         const removeBtn = document.createElement("button");
         removeBtn.addEventListener("click", () => {
             projectDiv.remove();
-            myProjects.splice(myProjects.indexOf(project), 1);
+            project.deleteProject();
         })
 
         projectDiv.classList.add("project-div");
