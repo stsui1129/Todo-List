@@ -13,8 +13,8 @@ class Project {
         this._title = newTitle; // this.title = newTitle leads to infinite recursion
     }
 
-    addTodo(title, description, dueDate, priority) {
-        const newTodo = new Todo(title, description, dueDate, priority);
+    addTodo(id, title, description, dueDate, priority) {
+        const newTodo = new Todo(id, title, description, dueDate, priority);
         this.todoList.push(newTodo);
     }
 

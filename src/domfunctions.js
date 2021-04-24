@@ -36,7 +36,7 @@ const domFunctions = (() => {
         })
     });
    
-    //when selected project clicked, go thru project.todolist and toggle classlist.
+    
 
 
     
@@ -57,38 +57,56 @@ const domFunctions = (() => {
         form.reset();
     }
 
-    
-        const submitButton = document.querySelector("#submit-button");
-        submitButton.addEventListener("click", e => {
+        form.addEventListener("submit", e => { //submit eventlistener must be attached to form
+            
             addTodoToProject();
-            renderTodo();
+            renderTodo();   
             toggleModal();
             e.preventDefault();
             formReset();
+            
         });
-  
+
         
+    
+  
+       
+
+
     const renderTodo = () => {
         const todoContent = document.querySelector(".todo-content");
         const todoDiv = document.createElement("div");
         const titleDiv = document.createElement("div");
         const descriptionDiv = document.createElement("div");
         const dueDateDiv = document.createElement("div");
-        const priorityDiv = document.createElement("div");
+        const editButton = document.createElement("button");
         todoContent.appendChild(todoDiv);
         todoDiv.appendChild(titleDiv);
         todoDiv.appendChild(descriptionDiv);
         todoDiv.appendChild(dueDateDiv);
-        todoDiv.appendChild(priorityDiv);
+        todoDiv.appendChild(editButton);
 
         const selectedProjectBtn = document.querySelector(".selected");
         const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
         
+        const addedTodo = selectedProject.todoList[selectedProject.todoList.length-1]
+        titleDiv.textContent = addedTodo.title; 
         
-        titleDiv.textContent = selectedProject.todoList[selectedProject.todoList.length-1].title; 
-        // descriptionDiv.textContent = selectedProject.todoList[selectedProject.todoList.length-1].description;
-       
+        dueDateDiv.textContent = addedTodo.dueDate;
+        editButton.textContent = "Edit details";
+
+        if (addedTodo.priority === "High") {
+            todoDiv.style.background = "red";
+        }
+        if (addedTodo.priority === "Medium") {
+            todoDiv.style.background = "orange";
+        }
+        if (addedTodo.priority === "Low") {
+            todoDiv.style.background = "lime";
+        }
         
+        editButton.addEventListener("click", editTodo);
+
         
 
         todoDiv.classList.add("todo-div");
@@ -96,7 +114,7 @@ const domFunctions = (() => {
         titleDiv.classList.add("title-div");
         descriptionDiv.classList.add("description-div");
         dueDateDiv.classList.add("due-date-div");
-        priorityDiv.classList.add("priority-div");
+        editButton.classList.add("edit-button");
     }
 
     const addTodoToProject = () => {
@@ -147,7 +165,7 @@ const domFunctions = (() => {
         }
     }
 
-    return {toggleModal, formReset, renderTodo, addTodoToProject, addNewProject, renderProject, renderAllProjects};
+    return {toggleModal, renderTodo, addTodoToProject, addNewProject, renderProject, renderAllProjects};
 
 })();
 

@@ -63,31 +63,21 @@ aside {
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
-    height: 100px;
+    height: 80px;
     width: 100vh;
-    padding: 10px;
-    margin: 20px;
     background: linear-gradient(#cda9dd, #9198e5);
   }
   
   .title-div {
     font-size: 22px;
-    margin-bottom: 20px;
   }
   
   .description-div {
     font-size: 22px;
-    margin-bottom: 20px;
   }
   
   .due-date-div {
     font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-  .priority-div {
-    font-size: 20px;
-    margin-bottom: 20px;
   }
 
 input {
@@ -95,9 +85,9 @@ input {
     margin: 10px;
 }
 
-.form-buttons {
+#submit-button {
     float: right;
-    margin: 20px 35px;
+    margin: 0px 65px;
 }
 
 input#title {
