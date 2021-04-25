@@ -74,32 +74,57 @@ const domFunctions = (() => {
     const closeEditButton = document.querySelector(".close-button-edit");
     closeEditButton.addEventListener("click", toggleEditModal);
 
-    document.getElementById('form-edit').addEventListener("submit", e => {
-        editTodo();
-        toggleEditModal();
-        e.preventDefault();
-        document.getElementById('form-edit').reset();
-    })
+        
+        
 
-    const editTodo = () => {
-        const title = document.getElementById("edit-title").value;
-        const description = document.getElementById("edit-description").value;
-        const dueDate = document.getElementById("edit-due-date").value;
-        const priority = document.querySelector('input[name="edit-priority"]:checked').value; 
+    const editTodo = (e) => {
+        const selectedProjectBtn = document.querySelector(".selected");
+        const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
+        const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
+
+        const currentTodoDiv = e.target.parentNode;
+        console.log(e.target.parentNode.id)
+
+        document.getElementById('form-edit').addEventListener("submit", e => {
             
-        
-            // currentselectedProject.todoList.find(todo => todo.id === e.target.parentNode.id);
+            const title = document.getElementById("edit-title").value;
+            const description = document.getElementById("edit-description").value;
+            const dueDate = document.getElementById("edit-due-date").value;
+            const priority = document.querySelector('input[name="edit-priority"]:checked').value; 
 
-        
+            currentTodo.editThisTodo(title, description, dueDate, priority);
 
-        // ...editTodo(title, description, dueDate, priority);
-
+            if (currentTodo.priority === "High") {
+                currentTodoDiv.style.background = "red";
+            }
+            if (currentTodo.priority === "Medium") {
+                currentTodoDiv.style.background = "orange";
+            }
+            if (currentTodo.priority === "Low") {
+                currentTodoDiv.style.background = "lime";
+            }
+            currentTodoDiv.childNodes[0].textContent = title;
+            currentTodoDiv.childNodes[2].textContent = dueDate;
+            
+            const editModal = document.querySelector(".todo-modal-edit");
+            editModal.classList.remove("show-modal");
+            e.preventDefault();
+        })
 
     }
 
     
     
     document.addEventListener('click', (e) => {
+        if (e.target.className === "edit-button"){
+            toggleEditModal();
+            const selectedProjectBtn = document.querySelector(".selected");
+            const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
+            const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
+            document.getElementById("edit-title").value = currentTodo.title;
+            document.getElementById("edit-due-date").value = currentTodo.dueDate;
+            editTodo(e);
+        }
         if (e.target.className === "delete-button") {
             e.target.parentNode.remove();
 
@@ -107,11 +132,8 @@ const domFunctions = (() => {
             const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
 
             const currentIndex = selectedProject.todoList.findIndex(todo => todo.id == e.target.parentNode.id);
-            selectedProject.todoList.splice(currentIndex, 1);
-                
-            
+            selectedProject.todoList.splice(currentIndex, 1);   
         }
-     
     })
    
 
@@ -160,17 +182,16 @@ const domFunctions = (() => {
         editButton.classList.add("edit-button");
         deleteButton.classList.add("delete-button");
 
-        editButton.addEventListener("click", (e) => {
-            toggleEditModal();
-            console.log(e.target.parentNode.id); // id of todo div
-            document.getElementById("edit-title").value = addedTodo.title;
-            document.getElementById("edit-due-date").value = addedTodo.dueDate;
-
+        // editButton.addEventListener("click", (e) => {
+        //     toggleEditModal();
+        //     document.getElementById("edit-title").value = addedTodo.title;
+        //     document.getElementById("edit-due-date").value = addedTodo.dueDate;
+        //     editTodo(e);
             
 
 
 
-        });
+        // });
 
 
     }

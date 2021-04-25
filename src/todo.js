@@ -7,7 +7,7 @@ class Todo {
         this.priority = priority;
     }
 
-    editTodo(title, description, dueDate, priority) {
+    editThisTodo(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
