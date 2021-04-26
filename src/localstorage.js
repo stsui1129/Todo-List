@@ -1,7 +1,9 @@
 import domFunctions from "./domfunctions";
+import {myProjects} from "./projectclass";
 
 function populateStorage() {
     localStorage.setItem("myProjects", JSON.stringify(myProjects)); //projects being stored in key called "myProjects"
+    localStorage.setItem("selectedProject", document.querySelector(".selected").dataset.key);
 };
 
 function retrieveData() {
@@ -10,7 +12,8 @@ function retrieveData() {
     } else {
         let retrievedData = localStorage.getItem("myProjects"); //get data string
         let storedProjects = JSON.parse(retrievedData); //parse into array
-        storedProjects.forEach(project => domFunctions.renderProject(project));
+        let selectedProject = localStorage.getItem("selectedProject");
+        // storedProjects.forEach(project => domFunctions.renderProject(project));
     }
 }
 

@@ -1,5 +1,5 @@
 import {myProjects, Project} from './projectclass';
-import populateStorage from './localstorage';
+import {populateStorage} from './localstorage';
 
 const domFunctions = (() => {
     const toggleModal = () => {
@@ -26,6 +26,7 @@ const domFunctions = (() => {
     projectBtns.addEventListener('click', (e) => {
         toggleProject();
         e.target.classList.toggle("selected");
+        populateStorage();
         const allTodo = document.querySelectorAll(".todo-div"); // if todo dataid == selected project's datakey, then remove hidden
         allTodo.forEach((todo) => {
             todo.dataset.id == e.target.dataset.key? todo.classList.remove("hidden") : todo.classList.add("hidden");   
@@ -38,7 +39,7 @@ const domFunctions = (() => {
             if (project.classList.contains("selected")) { // makes selected project unselected when another project is clicked
                 project.classList.toggle("selected");
             }
-        })
+        })  
     }
 
     const formReset = () => {
