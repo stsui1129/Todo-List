@@ -16,5 +16,7 @@ console.log(myProjects);
 renderAllProjects();
 document.querySelector("[data-key='234']").classList.add("selected");
 
+localStorage.retrieveData();
+
 
 

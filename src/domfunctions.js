@@ -1,4 +1,5 @@
 import {myProjects, Project} from './projectclass';
+import populateStorage from './localstorage';
 
 const domFunctions = (() => {
     const toggleModal = () => {
@@ -99,6 +100,7 @@ const domFunctions = (() => {
             e.preventDefault();    
         })
 
+        populateStorage();
     }
 
     document.addEventListener('click', (e) => {
@@ -115,6 +117,8 @@ const domFunctions = (() => {
             const currentIndex = selectedProject.todoList.findIndex(todo => todo.id == e.target.parentNode.id);
             // finds index of current todo in selected project array and splice it out
             selectedProject.todoList.splice(currentIndex, 1);   
+
+            populateStorage();
         }
     })
    
@@ -174,6 +178,8 @@ const domFunctions = (() => {
         const selectedProjectBtn = document.querySelector(".selected");
         const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
         selectedProject.addTodo(Date.now(), title, description, dueDate, priority); // Date.now() gives random number
+
+        populateStorage();
     }
 
     const addNewProject = () => {
@@ -185,6 +191,8 @@ const domFunctions = (() => {
         project.addToProjects();
         renderProject(project);
         }
+
+        populateStorage();
     }
 
     const renderProject = (project) => {
@@ -205,7 +213,7 @@ const domFunctions = (() => {
         projectDiv.appendChild(removeBtn);
     } 
     
-    return {renderProject}; //only function used in entry file index.js
+    return {renderProject}; //only function used elsewhere
 
 })();
 
