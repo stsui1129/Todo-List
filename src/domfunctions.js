@@ -92,12 +92,8 @@ const domFunctions = (() => {
             const priority = document.querySelector('input[name="edit-priority"]:checked').value; 
 
             if (currentTodo && currentTodoDiv) {
-                    currentTodo.title = title;
-                    currentTodo.description = description;
-                    currentTodo.dueDate = dueDate;
-                    currentTodo.priority = priority;
+                    currentTodo.editThisTodo(title, description, dueDate, priority);
                 
-
                     if (currentTodo.priority === "High") {
                         currentTodoDiv.style.background = "red";
                     }
@@ -126,12 +122,6 @@ const domFunctions = (() => {
     document.addEventListener('click', (e) => {
         if (e.target.className === "edit-button"){
             toggleEditModal();
-            // const selectedProjectBtn = document.querySelector(".selected");
-            // const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
-            // const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
-            // const currentTodoDiv = e.target.parentNode;
-            // document.getElementById("edit-title").value = currentTodo.title;
-            // document.getElementById("edit-due-date").value = currentTodo.dueDate;
             editTodo(e);
         }
         if (e.target.className === "delete-button") {
