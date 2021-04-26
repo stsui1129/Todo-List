@@ -1,9 +1,11 @@
-import {myProjects, Project} from './project';
-import Todo from './todo';
+import {myProjects, Project} from './projectclass';
 import domFunctions from './domfunctions';
 
-
-
+const renderAllProjects = () => {
+    for (let i=0; i< myProjects.length; i++) {
+        domFunctions.renderProject(myProjects[i]);
+    }
+}
 
 const defaultProject = new Project (234, "default project", []);
 defaultProject.addToProjects();
@@ -11,6 +13,8 @@ defaultProject.addToProjects();
 console.log(defaultProject.todoList);
 console.log(myProjects);
 
-domFunctions.renderAllProjects();
+renderAllProjects();
 document.querySelector("[data-key='234']").classList.add("selected");
+
+
 
