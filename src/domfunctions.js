@@ -80,35 +80,43 @@ const domFunctions = (() => {
     const editTodo = (e) => {
         const selectedProjectBtn = document.querySelector(".selected");
         const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
-        const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
+        let currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
 
-        const currentTodoDiv = e.target.parentNode;
-        console.log(e.target.parentNode.id)
-
+        let currentTodoDiv = e.target.parentNode;
+        
         document.getElementById('form-edit').addEventListener("submit", e => {
-            
+            // console.log(currentTodo)
             const title = document.getElementById("edit-title").value;
             const description = document.getElementById("edit-description").value;
             const dueDate = document.getElementById("edit-due-date").value;
             const priority = document.querySelector('input[name="edit-priority"]:checked').value; 
 
-            currentTodo.editThisTodo(title, description, dueDate, priority);
+            if (currentTodo && currentTodoDiv) {
+                    currentTodo.title = title;
+                    currentTodo.description = description;
+                    currentTodo.dueDate = dueDate;
+                    currentTodo.priority = priority;
+                
 
-            if (currentTodo.priority === "High") {
-                currentTodoDiv.style.background = "red";
-            }
-            if (currentTodo.priority === "Medium") {
-                currentTodoDiv.style.background = "orange";
-            }
-            if (currentTodo.priority === "Low") {
-                currentTodoDiv.style.background = "lime";
-            }
-            currentTodoDiv.childNodes[0].textContent = title;
-            currentTodoDiv.childNodes[2].textContent = dueDate;
+                    if (currentTodo.priority === "High") {
+                        currentTodoDiv.style.background = "red";
+                    }
+                    if (currentTodo.priority === "Medium") {
+                        currentTodoDiv.style.background = "orange";
+                    }
+                    if (currentTodo.priority === "Low") {
+                        currentTodoDiv.style.background = "lime";
+                    }
             
+                    currentTodoDiv.childNodes[0].textContent = title;
+                    currentTodoDiv.childNodes[2].textContent = dueDate;
+                }
+
+            currentTodo = null;
+            currentTodoDiv = null;
             const editModal = document.querySelector(".todo-modal-edit");
             editModal.classList.remove("show-modal");
-            e.preventDefault();
+            e.preventDefault();    
         })
 
     }
@@ -118,11 +126,12 @@ const domFunctions = (() => {
     document.addEventListener('click', (e) => {
         if (e.target.className === "edit-button"){
             toggleEditModal();
-            const selectedProjectBtn = document.querySelector(".selected");
-            const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
-            const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
-            document.getElementById("edit-title").value = currentTodo.title;
-            document.getElementById("edit-due-date").value = currentTodo.dueDate;
+            // const selectedProjectBtn = document.querySelector(".selected");
+            // const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
+            // const currentTodo = selectedProject.todoList.find(todo => todo.id == e.target.parentNode.id);
+            // const currentTodoDiv = e.target.parentNode;
+            // document.getElementById("edit-title").value = currentTodo.title;
+            // document.getElementById("edit-due-date").value = currentTodo.dueDate;
             editTodo(e);
         }
         if (e.target.className === "delete-button") {
@@ -244,7 +253,7 @@ const domFunctions = (() => {
         }
     }
 
-    return {toggleModal, renderTodo, addTodoToProject, addNewProject, renderProject, renderAllProjects};
+    return {editTodo, toggleModal, renderTodo, addTodoToProject, addNewProject, renderProject, renderAllProjects};
 
 })();
 
