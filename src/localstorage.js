@@ -3,7 +3,7 @@ import {myProjects} from "./projectclass";
 
 function populateStorage() {
     localStorage.setItem("myProjects", JSON.stringify(myProjects)); //projects being stored in key called "myProjects"
-    localStorage.setItem("selectedProject", document.querySelector(".selected").dataset.key);
+    localStorage.setItem("selectedProjectID", document.querySelector(".selected").dataset.key);
 };
 
 function retrieveData() {
@@ -12,8 +12,12 @@ function retrieveData() {
     } else {
         let retrievedData = localStorage.getItem("myProjects"); //get data string
         let storedProjects = JSON.parse(retrievedData); //parse into array
-        let selectedProject = localStorage.getItem("selectedProject");
-        // storedProjects.forEach(project => domFunctions.renderProject(project));
+        let selectedProjectID = localStorage.getItem("selectedProjectID");
+        let currentProject = myProjects.find(project => project.id == selectedProjectID);
+        storedProjects.forEach(project => domFunctions.renderProject(project));
+        storedProjects.forEach(project => {
+            project.todoList.forEach(todo => domFunctions.renderTodo(todo))
+        });
     }
 }
 

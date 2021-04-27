@@ -11,8 +11,8 @@ defaultProject.addToProjects();
 domFunctions.renderProject(defaultProject);
 document.querySelector("[data-key='234']").classList.add("selected");
 
-retrieveData();
-// localStorage.clear();
+// retrieveData();
+localStorage.clear();
 
 
 

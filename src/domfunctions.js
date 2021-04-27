@@ -123,7 +123,7 @@ const domFunctions = (() => {
         }
     })
    
-    const renderTodo = () => {
+    const renderTodo = (addedTodo) => {
         const todoContent = document.querySelector(".todo-content");
         const todoDiv = document.createElement("div");
         const titleDiv = document.createElement("div");
@@ -141,7 +141,7 @@ const domFunctions = (() => {
         const selectedProjectBtn = document.querySelector(".selected");
         const selectedProject = myProjects.find(project => project.id == selectedProjectBtn.dataset.key);
         
-        const addedTodo = selectedProject.todoList[selectedProject.todoList.length-1];
+        addedTodo = selectedProject.todoList[selectedProject.todoList.length-1];
         // newly added todo is always the last element of the array
         titleDiv.textContent = addedTodo.title; 
         
@@ -214,7 +214,7 @@ const domFunctions = (() => {
         projectDiv.appendChild(removeBtn);
     } 
     
-    return {renderProject}; //only function used elsewhere
+    return {renderTodo, renderProject}; //only functions used elsewhere
 
 })();
 
